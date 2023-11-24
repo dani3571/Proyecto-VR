@@ -8,7 +8,8 @@ public class UI_Interaction : MonoBehaviour
 
     [SerializeField]
     Button[] buttons;
-
+    [SerializeField]
+    string puerto;
     void Start()
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -19,8 +20,10 @@ public class UI_Interaction : MonoBehaviour
     }
     public void ManejarClic(string nombreBoton)
     {
+        if(nombreBoton == puerto)
+        {
+            Debug.Log("Puerto correcto");
+        }
         Debug.Log("Se hizo clic en el botón: " + nombreBoton);
     }
- 
-    
 }
