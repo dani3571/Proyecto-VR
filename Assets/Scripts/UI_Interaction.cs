@@ -9,7 +9,7 @@ public class UI_Interaction : MonoBehaviour
     [SerializeField]
     Button[] buttons;
     [SerializeField]
-    string puerto;
+    Level1Handler level1Handler;
     void Start()
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -20,9 +20,13 @@ public class UI_Interaction : MonoBehaviour
     }
     public void ManejarClic(string nombreBoton)
     {
-        if(nombreBoton == puerto)
+        if(nombreBoton == level1Handler.assignedPort)
         {
-            Debug.Log("Puerto correcto");
+            if(level1Handler.laptopIsPositioned)
+            {
+                level1Handler.Connect();
+                level1Handler.StartLevel1();
+            }
         }
         Debug.Log("Se hizo clic en el botón: " + nombreBoton);
     }

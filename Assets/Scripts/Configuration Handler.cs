@@ -52,8 +52,7 @@ public class ConfigurationHandler : MonoBehaviour
         0,
         0
     };
-    void Start()
-    {
+    public void StartConfiguration() {
         SetQuestion(0);
     }
     public bool ValidatePrompt(int buttonIndex) {
