@@ -22,6 +22,7 @@ public class Level1Handler : MonoBehaviour
         laptopWire.SetActive(false);
     }
     public void StartLevel1() {
+        canvasConfiguration.SetActive(true);
         configurationHandler.StartConfiguration();
     }
     public void Connect() {

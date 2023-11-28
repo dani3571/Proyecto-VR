@@ -69,5 +69,9 @@ public class ConfigurationHandler : MonoBehaviour
         Option1.text = options[index,0];
         Option2.text = options[index,1];
         Option3.text = options[index,2];
+
+
+
+        Debug.Log("OPCIONESSSSS"+ Option1.text);
     }
 }
