@@ -61,19 +61,36 @@ public class ConfigurationHandler : MonoBehaviour
         SetQuestion(0);
     }
     public bool ValidatePrompt(int buttonIndex) {
-        if(correctAnswerIndex[index] == buttonIndex)
-        {
-            index++;
-            porcentage = porcentage + 10;
-            porcentageText.text = porcentage.ToString() +"%"; 
-            SetQuestion(index);
-            return true;
+        if(index < options.Length - 1) {
+            Debug.Log(index);
+            if(correctAnswerIndex[index] == buttonIndex)
+            {
+                index++;
+                porcentage = porcentage + 10;
+                porcentageText.text = porcentage.ToString() +"%"; 
+                if(index < options.Length-1)
+                {
+                    SetQuestion(index);
+                }
+                else 
+                {
+                    PromptText.text = "Completaste la configuración!";
+                    Option1.text = "";
+                    Option2.text = "";
+                    Option3.text = "";
+                    canvasHandler.MostrarMensaje("Felicidades!, completaste la configuración básica del switch");
+                }
+                return true;
+            }
+            else 
+            {
+                canvasHandler.MostrarMensaje("Opción incorrecta, busque el comando en el manual de configuración");
+            }
+            return false;
+        } else {
+            canvasHandler.MostrarMensaje("Felicidades!, completaste la configuración básica del switch");
+            return false;
         }
-        else 
-        {
-            canvasHandler.MostrarMensaje("Opción incorrecta, busque el comando en el manual de configuración");
-        }
-        return false;
     }
     void SetQuestion(int index){
         PromptText.text = settings[index];

@@ -11,6 +11,8 @@ public class Level1Handler : MonoBehaviour
     GameObject canvasConfiguration;
     [SerializeField]
     GameObject laptopWire;
+    [SerializeField]
+    WireHandler wireHandler;
     public bool laptopIsConected;
     public bool portIsCorrect;
     public bool laptopIsPositioned;
@@ -26,6 +28,10 @@ public class Level1Handler : MonoBehaviour
         configurationHandler.StartConfiguration();
     }
     public void Connect() {
+        if(wireHandler.wire != null)
+        {
+            Destroy(wireHandler.wire);
+        }
         laptopWire.SetActive(true);
         laptopIsConected = true;
     }
