@@ -28,15 +28,9 @@ public class UI_Interaction : MonoBehaviour
         {
             if(level1Handler.laptopIsPositioned)
             {
-                if(wireHandler.isGrabbingWire)
-                {
                     level1Handler.Connect();
-                    level1Handler.StartLevel1();
-                }
-                else 
-                {
-                    canvasHandler.MostrarMensaje("Debes sostener un cable para conectarlo al puerto");
-                }
+                    level1Handler.StartLevel1();      
+             
             }
             else 
             {
