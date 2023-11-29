@@ -10,6 +10,10 @@ public class UI_Interaction : MonoBehaviour
     Button[] buttons;
     [SerializeField]
     Level1Handler level1Handler;
+    [SerializeField]
+    WireHandler wireHandler;
+    [SerializeField]
+    CanvasHandler canvasHandler;
     void Start()
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -24,10 +28,25 @@ public class UI_Interaction : MonoBehaviour
         {
             if(level1Handler.laptopIsPositioned)
             {
-                level1Handler.Connect();
-                level1Handler.StartLevel1();
+                if(wireHandler.isGrabbingWire)
+                {
+                    level1Handler.Connect();
+                    level1Handler.StartLevel1();
+                }
+                else 
+                {
+                    canvasHandler.MostrarMensaje("Debes sostener un cable para conectarlo al puerto");
+                }
+            }
+            else 
+            {
+                canvasHandler.MostrarMensaje("Debes posicionar la laptop al lado del router");
             }
         }
+        else
+        {
+            canvasHandler.MostrarMensaje("Elegiste un puerto incorrecto, revisa el manual de configuración"); 
+        } 
         Debug.Log("Se hizo clic en el botón: " + nombreBoton);
     }
 }

@@ -14,6 +14,8 @@ public class ConfigurationHandler : MonoBehaviour
     Text Option3;
     [SerializeField]
     TMP_Text PromptText;
+    [SerializeField]
+    CanvasHandler canvasHandler;
     private int index = 0;
     string[] settings = new string[]
     {
@@ -29,28 +31,28 @@ public class ConfigurationHandler : MonoBehaviour
         "10. Cree un aviso que advierta a todo el que acceda al dispositivo que el acceso no autorizado está prohibido"
     };    
     string[,] options = new string[,]{
-        {"Hostname R1","Routername R1","Name R1"},
-        {"Enable secret c1sco1234","X","X"},
-        {"ip domain-name CCNA-lab.com","X","X"},
-        {"no ip domain lookup","X","X"},
-        {"service password-encryption","X","X"},
-        {"username SSHadmin secret 55Hadm!n","X","X"},
-        {"crypto key generate rsa 1024","X","X"},
-        {"line con 0\n password cisco \n loggin synchronous \n login","X","X"},
-        {"line vty 0 4\n password cisco \n login local","X","X"},
-        {"banner motd #Ingreso solo para personal autorizado#","X","X"},
+        {"Hostname R1","Routername R1","Name R1"}, // 0
+        {"Enable password c1sco1234","Set password c1sco1234","Enable secret c1sco1234"}, // 2
+        {"ip domain-server CCNA-lab.com","ip domain-name CCNA-lab.com","ip domain-net CCNA-lab.com"}, // 1
+        {"no ip dns lookup","no ip dns server","no ip domain lookup"}, // 2
+        {"service password-cifrate","service password-encryption","password-cifrate"}, // 1
+        {"name SSHadmin secret 55Hadm!n","username SSHadmin password 55Hadm!n","username SSHadmin secret 55Hadm!n"}, // 2
+        {"crypto key generate rsa 1024","crypto key 1024","generate key 1024"}, // 0
+        {"line con 0\n password cisco \n loggin synchronous \n login","line con 0\n password cisco\n login","line con 0\n password cisco \n loggin synchronous"}, // 0
+        {"line vty 0 4\n secret cisco \n login local","line vty 0 4\n password cisco \n login","line vty 0 4\n password cisco \n login local"}, // 2
+        {"banner message #Ingreso solo para personal autorizado#","advise motd #Ingreso solo para personal autorizado#","banner motd #Ingreso solo para personal autorizado#"}, // 2
     };
     int[] correctAnswerIndex = new int[]{
         0,
+        2,
+        1,
+        2,
+        1,
+        2,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
+        2,
+        2
     };
     public void StartConfiguration() {
         SetQuestion(0);
@@ -62,6 +64,10 @@ public class ConfigurationHandler : MonoBehaviour
             SetQuestion(index);
             return true;
         }
+        else 
+        {
+            canvasHandler.MostrarMensaje("Opción incorrecta, busque el comando en el manual de configuración");
+        }
         return false;
     }
     void SetQuestion(int index){
@@ -69,9 +75,6 @@ public class ConfigurationHandler : MonoBehaviour
         Option1.text = options[index,0];
         Option2.text = options[index,1];
         Option3.text = options[index,2];
-
-
-
         Debug.Log("OPCIONESSSSS"+ Option1.text);
     }
 }

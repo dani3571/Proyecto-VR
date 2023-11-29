@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WireHandler : MonoBehaviour
 {
-    public bool isGrabbingWire;
+    public bool isGrabbingWire = false;
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag.Equals("Wires"))
         {
