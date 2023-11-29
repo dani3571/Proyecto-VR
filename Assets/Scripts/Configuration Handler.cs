@@ -16,7 +16,10 @@ public class ConfigurationHandler : MonoBehaviour
     TMP_Text PromptText;
     [SerializeField]
     CanvasHandler canvasHandler;
+    [SerializeField]
+    Text porcentageText;
     private int index = 0;
+    private int porcentage = 0;
     string[] settings = new string[]
     {
         "1. Cambia el nombre del Router a R1",
@@ -61,6 +64,8 @@ public class ConfigurationHandler : MonoBehaviour
         if(correctAnswerIndex[index] == buttonIndex)
         {
             index++;
+            porcentage = porcentage + 10;
+            porcentageText.text = porcentage.ToString() +"%"; 
             SetQuestion(index);
             return true;
         }
