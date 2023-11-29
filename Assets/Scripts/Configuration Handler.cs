@@ -61,14 +61,14 @@ public class ConfigurationHandler : MonoBehaviour
         SetQuestion(0);
     }
     public bool ValidatePrompt(int buttonIndex) {
-        if(index < options.Length - 1) {
+        if(index <= 9) {
             Debug.Log(index);
             if(correctAnswerIndex[index] == buttonIndex)
             {
                 index++;
                 porcentage = porcentage + 10;
                 porcentageText.text = porcentage.ToString() +"%"; 
-                if(index < options.Length-1)
+                if(index <= 9)
                 {
                     SetQuestion(index);
                 }
